@@ -1,13 +1,14 @@
 body {
-    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     justify-content: center;
-    background-color: rgba(255, 27, 27, 0.33);
-    color: rgb(46, 46, 46);
+    color: rgb(43, 43, 43);
 }
 
-.container {
-    background-color: rgba(238, 238, 238, 0.452);
+
+#wrapper {
+    background: #e1ecff;
+    background-image: linear-gradient(to bottom, #bfefff, #c9e9fc, #ffffff, #fff6dc, #fff8ea)
 }
 
 #headerContainer {
@@ -15,25 +16,83 @@ body {
     margin-top: 2%;
     margin-bottom: 2%;
     padding: 25px;
+    background-color: rgba(255, 255, 255, 0.534);
 }
 
 
 #title {
     text-align: center;
     font-size: 40px;
+    font-family: 'Concert One', cursive;
+    color: rgb(43, 43, 43);
+}
+
+#currentWeatherCard,
+#forecastCard {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.40);
+}
+
+#weatherIcon {
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #searchContainer {
     padding: 25px;
+    background-color: rgba(255, 255, 255, 0.534);
 }
 
-#footer {
+#resultContainer,
+#forecastContainer {
+    justify-content: center;
+    padding: 32px;
+    background-color: rgba(255, 255, 255, 0.534);
+}
+
+#city,
+#temp {
+    text-align: right;
+}
+
+#cardBody {
+    padding-left: 3px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+}
+
+footer {
     text-align: center;
+    padding: 0px;
+    color: rgb(43, 43, 43);
 }
 
-div.line
-{
-    height: .5px;
-    width: 100%;
-    background-color: rgb(131, 131, 131);
+.card-body {
+    padding: 1.88rem 1.81rem
+    flex: 1 1 auto;
+    padding: 1.25rem
+}
+
+p {
+    font-size: 13px
+}
+
+.weakly-weather {
+    background: #ffffff;
+    overflow-x: auto
+}
+
+.weakly-weather .weakly-weather-item {
+    flex:auto;
+    border-right: 1px solid #f2f2f2;
+    border-left: 1px solid #f2f2f2;
+    padding: 1rem;
+    text-align: center;
+    width: auto;
+}
+
+.weakly-weather .weakly-weather-item {
+    font-size: 1.2rem
 }

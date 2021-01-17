@@ -5,77 +5,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
     <title>Weather Dashboard</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="wrapper">
         <div class="row">
-            <div class="col">
+            <div class="col-12">
                 <div class="jumbotron" id="headerContainer">
                     <div class="container">
-                        <h1 class="display-4" id="title">Weather Dashboard</h1>
+                        <h1 class="display-4" id="title">WEATHER DASHBOARD</h1>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row" id="bodyRow">
-            <!-- <div class="col-1">
-            </div> -->
             <div class="col-4">
                 <div class="jumbotron" id="searchContainer">
                     <div class="container">
                         <div class="row" id="searchBarContainer">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="City" aria-label="Search"
-                                    aria-describedby="basic-addon2">
+                                    aria-describedby="basic-addon2" id="userInput">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button">Search</button>
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="searchBtn">Search</button>
                                 </div>
                             </div>
                         </div>
                         <div class="row" id="searchHistoryContainer">
-                            <button type="button" class="btn btn-outline-secondary">History</button>
+                            <ul class="list-group list-group-flush" id="listBox">
+                                <li class="list-group-item" id="listLine">
+                                    <button type="button" class="btn btn-outline-secondary">Adelaide</button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-8">
                 <div class="jumbotron" id="resultContainer">
-                    <div class="container">
-                        <div class="col-sm" id="resDisplayContainer">
-                            <div class="card" id="currentCard">
-                                <div class="card-body">
-                                    This is some text within a card body.
+                    <div class="container-fluid">
+                        <div class="row d-flex justify-content-center">
+                            <div class="card" id="currentWeatherCard">
+                                <div class="row">
+                                    <div class="col-sm-4" id="weatherIcon">
+
+                                    </div>
+                                    <div class="col-sm-8 topRes">
+                                        <h2 class="ml-auto mr-4 mt-3 mb-0" id="city"></h2>
+                                        <h1 class="ml-auto mr-4 large-font" id="temp"></h1>
+                                    </div>
                                 </div>
+                                <p class="ml-4 mb-4" id="date"></p>
+                                <p class="ml-4 mb-4" id="hum"></p>
+                                <p class="ml-4 mb-4" id="wind"></p>
+                                <p class="ml-4 mb-4" id="uv"></p>
                             </div>
                         </div>
-                        <div class="col-sm" id="res5Container">
-                            <div class="card" id="forecastCard">
-                                <div class="card-body">
-                                    This is some text within a card body.
+                    </div>
+                    <!-- forecast cards here -->
+                    <div class="jumbotron" id="forecastContainer">
+                        <div class="container-fluid">
+                            <div class="card-body p-0">
+                                <div class="d-flex weakly-weather">
+                                    <div class="weakly-weather-item">
+                                        <p class="mb-0"> Sun </p> <i class="mdi mdi-weather-cloudy"></i>
+                                        <p class="mb-0"> 30° </p>
+                                    </div>
+                                    <div class="weakly-weather-item">
+                                        <p class="mb-1"> Mon </p> <i class="mdi mdi-weather-hail"></i>
+                                        <p class="mb-0"> 31° </p>
+                                    </div>
+                                    <div class="weakly-weather-item">
+                                        <p class="mb-1"> Tue </p> <i class="mdi mdi-weather-partlycloudy"></i>
+                                        <p class="mb-0"> 28° </p>
+                                    </div>
+                                    <div class="weakly-weather-item">
+                                        <p class="mb-1"> Wed </p> <i class="mdi mdi-weather-pouring"></i>
+                                        <p class="mb-0"> 30° </p>
+                                    </div>
+                                    <div class="weakly-weather-item">
+                                        <p class="mb-1"> Thu </p> <i class="mdi mdi-weather-pouring"></i>
+                                        <p class="mb-0"> 29° </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-1">
-            </div> -->
         </div>
-        <footer>
-            <div class="line"></div>
-            <div class="row" id="footer">
-                <div class="col-md-12 footer-col"><i>Created by BellaSantiago &copy; 2020</i></div>
-            </div>
-        </footer>
-    </div>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="./assets/script.js"></script>
 </body>
-
-
+<footer>
+    <div class="row" id="footer">
+        <div class="col-md-12 footer-col"><i>Created by BellaSantiago &copy; 2020</i></div>
+    </div>
+</footer>
 </html>
