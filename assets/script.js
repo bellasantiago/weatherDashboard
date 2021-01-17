@@ -75,15 +75,15 @@ $.ajax({
     }).then(function (response) {
         console.log(response);
 
-        $("#dayOne").text(moment().day(0+1).format("ddd"));
+        $("#dayOne").text(moment().day(0 + 1).format("ddd"));
         $("#oneIcon").attr("src", "img/clouds.png")
-        $("#dayTwo").text(moment().day(0+2).format("ddd"));
+        $("#dayTwo").text(moment().day(0 + 2).format("ddd"));
         $("#twoIcon").attr("src", "img/clouds.png")
-        $("#dayThree").text(moment().day(0+3).format("ddd"));
+        $("#dayThree").text(moment().day(0 + 3).format("ddd"));
         $("#threeIcon").attr("src", "img/clouds.png")
-        $("#dayFour").text(moment().day(0+4).format("ddd"));
+        $("#dayFour").text(moment().day(0 + 4).format("ddd"));
         $("#fourIcon").attr("src", "img/clouds.png")
-        $("#dayFive").text(moment().day(0+5).format("ddd"));
+        $("#dayFive").text(moment().day(0 + 5).format("ddd"));
         $("#fiveIcon").attr("src", "img/clouds.png")
     });
 
@@ -100,32 +100,24 @@ function renderButtons() {
 
     // Delete the content inside the searchHistoryContainer div prior to adding new movies
     $("#listBox").empty();
-    // (this is necessary otherwise you will have repeat buttons)
-    // Loop through the array of movies, then generate buttons for each movie in the array
+
+    // Loop through the array of searched cities, then generate buttons for each movie in the array
     for (i = 0; i < searchHistory.length; i++) {
         console.log(searchHistory[i]);
 
-        // <li class="list-group-item" id="listLine">
-        // <button type="button" class="btn btn-outline-secondary">Adelaide</button>
-        //</li>
         var historyBtn = $("<button>").text(searchHistory[i]);
         historyBtn.attr("type", "button"),
-            historyBtn.attr("class", "btn btn-outline-secondary")
+            historyBtn.attr("class", "btn btn-outline-secondary pastSearch")
 
         var listDiv = $("<li>").html(historyBtn);
         listDiv.attr("class", "list-group-item");
 
-        // var historyBtn = $("<button>").text(searchHistory[i]);
-        // historyBtn.attr("type", "button"),
-        //     historyBtn.attr("class", "btn btn-outline-secondary")
-
         $("#listBox").prepend(listDiv);
-
     }
 }
 
 // Storing player's name and score in the local storage
-$("#searchBtn").click(function () {
+$("#searchBtn").click(function currentWeather() {
     var userSearch = userInput.value.trim();
 
     searchHistory.push(userSearch);

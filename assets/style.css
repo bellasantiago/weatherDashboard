@@ -70,7 +70,7 @@ footer {
 }
 
 .card-body {
-    padding: 1.88rem 1.81rem
+    padding: 1.88rem 1.81rem;
     flex: 1 1 auto;
     padding: 1.25rem
 }
@@ -81,7 +81,7 @@ p {
 
 .littleIcon {
     width: 30%;
-    height: auto%;
+    height: auto;
 }
 
 .weakly-weather {
