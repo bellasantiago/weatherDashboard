@@ -1,38 +1,9 @@
-var lat
-var long
+//Weather Icons
 
-// On page load display user's current location's weather
-if (window.addEventListener) {
-    // Mozilla, Netscape, Firefox
-    window.addEventListener('load', WindowLoad, false);
-} else if (window.attachEvent) {
-    // IE
-    window.attachEvent('onload', WindowLoad);
-}
-function WindowLoad(event) {
-    console.log("Page Loaded!")
-    navigator.geolocation.getCurrentPosition(success, error);
 
-    function success(pos) {
-        var crd = pos.coords;
-
-        lat = $(crd.latitude);
-        long = $(crd.longitude);
-        localStorage.setItem("Latitude", lat[0]);
-        localStorage.setItem("Longitude", long[0]);
-    }
-
-    function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-        alert('Please refresh the page and enable your location sharing.')
-    }
-};
-
-var userLat = localStorage.getItem("Latitude");
-var userLong = localStorage.getItem("Longitude");
-
+var city = "Adelaide"
 // OpenWeather API
-var userQueryURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + userLat + "&lon=" + userLong + "&appid=79f78d4405a86f3c387469b830755e28"
+var userQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=79f78d4405a86f3c387469b830755e28"
 
 $.ajax({
     url: userQueryURL,
@@ -40,13 +11,87 @@ $.ajax({
 }).then(function (response) {
     console.log(response);
 
-    var currentWeather = $("<div>");
-    currentWeather.attr("class", "row");
+    var wholeTemp = response.main.temp;
+    var newTemp = parseInt(wholeTemp, 10);
 
-    $("#resultContainer").append(currentWeather)
+    $("#city").html(response.name);
+    $("#temp").html(newTemp + "\u00B0");
+    $("#date").text(moment().format("dddd, MMMM Do YYYY"));
+    $("#hum").html("<b>Humidity: </b>" + response.main.humidity) + "%";
+    $("#wind").html("<b>Wind Speed: </b>" + response.wind.speed + " Km/H");
+    $("#uv").html("<b>UV Index: </b>" + response.name);
+
+    function renderIcons() {
+        if (response.weather[0].main === "Clouds") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/clouds.png")
+            $("#weatherIcon").append(icon);
+        } else if (response.weather[0].main === "Clear") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/clear.png")
+            $("#weatherIcon").append(icon);
+        } else if (response.weather[0].main === "Mist") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/rain.png")
+            $("#weatherIcon").append(icon);
+        } else if (response.weather[0].main === "Rain") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/rain.png")
+            $("#weatherIcon").append(icon);
+        } else if (response.weather[0].main === "Wind") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/wind.png")
+            $("#weatherIcon").append(icon);
+        } else if (response.weather[0].main === "Thunder") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/thunder.png")
+            $("#weatherIcon").append(icon);
+        } else if (response.weather[0].main === "Partial Clouds") {
+            $("#weatherIcon").empty();
+            var icon = $("<img>")
+            icon.attr("src", "img/partialclouds.png")
+            $("#weatherIcon").append(icon);
+        } else {
+            $("#weatherIcon").empty();
+        }
+    };
+
+    renderIcons();
+
+    //---------------------------------------------------//
+    //Get 5-Day Forecast
+    var forecastCity = response.name;
+    var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + forecastCity + "&units=metric&appid=79f78d4405a86f3c387469b830755e28"
+
+    $.ajax({
+        url: forecastQueryURL,
+        method: "GET",
+    }).then(function (response) {
+        console.log(response);
+
+        $("#dayOne").text(moment().day(0+1).format("ddd"));
+        $("#oneIcon").attr("src", "img/clouds.png")
+        $("#dayTwo").text(moment().day(0+2).format("ddd"));
+        $("#twoIcon").attr("src", "img/clouds.png")
+        $("#dayThree").text(moment().day(0+3).format("ddd"));
+        $("#threeIcon").attr("src", "img/clouds.png")
+        $("#dayFour").text(moment().day(0+4).format("ddd"));
+        $("#fourIcon").attr("src", "img/clouds.png")
+        $("#dayFive").text(moment().day(0+5).format("ddd"));
+        $("#fiveIcon").attr("src", "img/clouds.png")
+    });
 
 });
 
+
+
+//-----------------------------------------------------//
 // History variable where the user input is stored.
 var searchHistory = ["Adelaide"];
 
@@ -64,7 +109,7 @@ function renderButtons() {
         // <button type="button" class="btn btn-outline-secondary">Adelaide</button>
         //</li>
         var historyBtn = $("<button>").text(searchHistory[i]);
-            historyBtn.attr("type", "button"),
+        historyBtn.attr("type", "button"),
             historyBtn.attr("class", "btn btn-outline-secondary")
 
         var listDiv = $("<li>").html(historyBtn);
@@ -80,16 +125,7 @@ function renderButtons() {
 }
 
 // Storing player's name and score in the local storage
-$("#searchBtn").click(function (event) {
-    event.preventDefault();
-
-    // Reaching for locally stored values
-    // if (localStorage.getItem('history')) {
-    //     searchHistory = localStorage.getItem('history');
-    //     searchHistory = JSON.parse(searchHistory);
-    // } else {
-    //     searchHistory = [];
-    // };
+$("#searchBtn").click(function () {
     var userSearch = userInput.value.trim();
 
     searchHistory.push(userSearch);
@@ -159,7 +195,16 @@ $("#searchBtn").click(function (event) {
             $("#weatherIcon").empty();
         }
 
+        //Get 5-Day Forecast
+        var forecastCity = response.name;
+        var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + forecastCity + "&appid=79f78d4405a86f3c387469b830755e28"
+
+        $.ajax({
+            url: forecastQueryURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+        });
     });
 
 });
-

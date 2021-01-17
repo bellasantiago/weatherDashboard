@@ -79,6 +79,11 @@ p {
     font-size: 13px
 }
 
+.littleIcon {
+    width: 30%;
+    height: auto%;
+}
+
 .weakly-weather {
     background: #ffffff;
     overflow-x: auto
