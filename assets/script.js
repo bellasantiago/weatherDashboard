@@ -105,19 +105,18 @@ $("#searchBtn").click(function currentWeather() {
 
                 if (time == "12:00:00") {
 
-            //         foreDiv.attr("class", "weakly-weather-item p");
-            //         var foreP = $("<p>");
-            //         foreP.attr("class","mb-0");
-            //         foreP.attr("id", "foreTemp");
-            //         foreDiv.append(foreP);
-            //         var temp = $(".weakly-weather-item").html(
-            //             "<p class='mb-0' id='foreTempOne'" + foreTemp + '°' + "</p>"
-            //             );
-            //         var hum = $("#foreTemp").text("Humidity: " + fiveDayForecast.main.humidity + "%");
+                    //         foreDiv.attr("class", "weakly-weather-item p");
+                    //         var foreP = $("<p>");
+                    //         foreP.attr("class","mb-0");
+                    //         foreP.attr("id", "foreTemp");
+                    //         foreDiv.append(foreP);
+                    //         var temp = $(".weakly-weather-item").html(
+                    //             "<p class='mb-0' id='foreTempOne'" + foreTemp + '°' + "</p>"
+                    //             );
+                    //         var hum = $("#foreTemp").text("Humidity: " + fiveDayForecast.main.humidity + "%");
                 }
             }
         });
 
     });
-
 });
