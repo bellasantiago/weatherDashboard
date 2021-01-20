@@ -4,16 +4,17 @@ var searchHistory = [];
 // Function for displaying history buttons
 function renderButtons() {
 
-    // Delete the content inside the searchHistoryContainer div prior to adding new movies
+    // Delete the content inside the searchHistoryContainer div prior to adding new city
     $("#listBox").empty();
 
-    // Loop through the array of searched cities, then generate buttons for each movie in the array
+    // Loop through the array of searched cities, then generate buttons for each city in the array
     for (i = 0; i < searchHistory.length; i++) {
         console.log(searchHistory[i]);
 
         var historyBtn = $("<button>").text(searchHistory[i]);
         historyBtn.attr("type", "button"),
             historyBtn.attr("class", "btn btn-outline-secondary pastSearch")
+        historyBtn.attr("id", "pastBtn")
 
         var listDiv = $("<li>").html(historyBtn);
         listDiv.attr("class", "list-group-item");
@@ -22,16 +23,34 @@ function renderButtons() {
     }
 }
 
-// Storing city's name and displaying current weather info
-$("#searchBtn").click(function currentWeather() {
+var searchedCity = []
+
+//Store button's text as the city name
+$("#searchBtn").click(function btnClicked() {
     var userSearch = userInput.value.trim();
     searchHistory.push(userSearch);
     localStorage.setItem("history", JSON.stringify(searchHistory));
     renderButtons();
 
     //Searched City API Call
-    var searchedCity = $("#userInput").val();
+    searchedCity = $("#userInput").val();
+    currentWeather();
+});
 
+//Historical Searches button click
+$("#pastBtn").click(function() {
+    var userSearch = pastBtn.value.trim();
+    searchHistory.push(userSearch);
+    localStorage.setItem("history", JSON.stringify(searchHistory));
+    renderButtons();
+
+    //Searched City API Call
+    searchedCity = $("#pastBtn").val();
+    currentWeather();
+});
+
+// Current Weather function
+function currentWeather() {
     // OpenWeather API
     var userQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + searchedCity + "&units=metric&appid=79f78d4405a86f3c387469b830755e28"
 
@@ -79,11 +98,12 @@ $("#searchBtn").click(function currentWeather() {
             } else {
                 $("#uv").attr("class", "danger");
             }
+
         })
 
         //Get 5-Day Forecast
         var forecastCity = response.name;
-        var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + forecastCity + "&appid=79f78d4405a86f3c387469b830755e28"
+        var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + forecastCity + "&units=metric&appid=79f78d4405a86f3c387469b830755e28"
 
         $.ajax({
             url: forecastQueryURL,
@@ -98,23 +118,22 @@ $("#searchBtn").click(function currentWeather() {
                 var dateStampString = JSON.stringify(dateStamp);
                 var date = dateStampString.slice(1, 11);
                 var time = dateStampString.slice(12, 20);
-                var foreTemp = fiveDayForecast.main.temp - 273;
-                foreTemp = Math.round(foreTemp * 100) / 100;
 
                 if (time == "12:00:00") {
+                    console.log(forecastResponse.list[i])
 
-                    //         foreDiv.attr("class", "weakly-weather-item p");
-                    //         var foreP = $("<p>");
-                    //         foreP.attr("class","mb-0");
-                    //         foreP.attr("id", "foreTemp");
-                    //         foreDiv.append(foreP);
-                    //         var temp = $(".weakly-weather-item").html(
-                    //             "<p class='mb-0' id='foreTempOne'" + foreTemp + '°' + "</p>"
-                    //             );
-                    //         var hum = $("#foreTemp").text("Humidity: " + fiveDayForecast.main.humidity + "%");
+
                 }
             }
+
         });
 
+        // Render date on forecast
+        $("#dayOne").text(moment().add(1, 'days').format("ddd"));
+        $("#dayTwo").text(moment().add(2, 'days').format("ddd"));
+        $("#dayThree").text(moment().add(3, 'days').format("ddd"));
+        $("#dayFour").text(moment().add(4, 'days').format("ddd"));
+        $("#dayFive").text(moment().add(5, 'days').format("ddd"));
+
     });
-});
+};

@@ -88,12 +88,12 @@ footer {
     padding: 1.25rem
 }
 
-p {
+#p {
     font-size: 13px
 }
 
 .littleIcon {
-    width: 30%;
+    width: 50%;
     height: auto;
 }
 
