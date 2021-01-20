@@ -38,7 +38,7 @@ $("#searchBtn").click(function currentWeather() {
     $.ajax({
         url: userQueryURL,
         method: "GET",
-    }).then(function (response) {
+    }).then(function(response) {
         console.log(response);
 
         // Main weather card information
@@ -55,7 +55,7 @@ $("#searchBtn").click(function currentWeather() {
         $("#weatherIcon").empty();
         var iconResponse = response.weather[0].main
         var icon = $("<img>")
-        icon.attr("src", "img/" + iconResponse + ".png");
+        icon.attr("src", "assets/img/" + iconResponse + ".png");
         $("#weatherIcon").append(icon);
 
         //UV Index Call
@@ -67,18 +67,16 @@ $("#searchBtn").click(function currentWeather() {
         $.ajax({
             url: UVQueryURL,
             method: "GET",
-        }).then(function (response) {
+        }).then(function(response) {
             console.log(response);
             console.log(response[0].value)
             $("#uv").html("<b>UV Index: </b>" + response[0].value);
 
             if (response[0].value < 4) {
                 $("#uv").attr("class", "success");
-            }
-            else if (response[0].value < 8) {
+            } else if (response[0].value < 8) {
                 $("#uv").attr("class", "warning");
-            }
-            else {
+            } else {
                 $("#uv").attr("class", "danger");
             }
         })
@@ -90,7 +88,7 @@ $("#searchBtn").click(function currentWeather() {
         $.ajax({
             url: forecastQueryURL,
             method: "GET",
-        }).then(function (forecastResponse) {
+        }).then(function(forecastResponse) {
             console.log(forecastResponse);
 
             for (var i = 0; i < 40; i++) {

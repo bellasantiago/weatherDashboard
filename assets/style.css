@@ -5,7 +5,6 @@ body {
     color: rgb(43, 43, 43);
 }
 
-
 #wrapper {
     background: #e1ecff;
     background-image: linear-gradient(to bottom, #bfefff, #c9e9fc, #ffffff, #fff6dc, #fff8ea)
@@ -33,7 +32,6 @@ body {
     padding: 25px;
     background-color: rgba(255, 255, 255, 0.534);
 }
-
 
 #title {
     text-align: center;
@@ -105,7 +103,7 @@ p {
 }
 
 .weakly-weather .weakly-weather-item {
-    flex:auto;
+    flex: auto;
     border-right: 1px solid #f2f2f2;
     border-left: 1px solid #f2f2f2;
     padding: 1rem;
