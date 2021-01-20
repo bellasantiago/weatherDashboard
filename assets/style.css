@@ -11,6 +11,21 @@ body {
     background-image: linear-gradient(to bottom, #bfefff, #c9e9fc, #ffffff, #fff6dc, #fff8ea)
 }
 
+.danger {
+    background-color: rgb(255, 147, 147);
+    padding-left: 25px;
+}
+
+.warning {
+    background-color: rgb(255, 230, 147);
+    padding-left: 25px;
+}
+
+.success {
+    background-color: rgb(199, 255, 147);
+    padding-left: 25px;
+}
+
 #headerContainer {
     width: 100%;
     margin-top: 2%;

@@ -1,7 +1,6 @@
-//Weather Icons
-
-
+//Standard city on loading page
 var city = "Adelaide"
+
 // OpenWeather API
 var userQueryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=79f78d4405a86f3c387469b830755e28"
 
@@ -17,7 +16,7 @@ $.ajax({
     $("#city").html(response.name);
     $("#temp").html(newTemp + "\u00B0");
     $("#date").text(moment().format("dddd, MMMM Do YYYY"));
-    $("#hum").html("<b>Humidity: </b>" + response.main.humidity) + "%";
+    $("#hum").html("<b>Humidity: </b>" + response.main.humidity + "%");
     $("#wind").html("<b>Wind Speed: </b>" + response.wind.speed + " Km/H");
     $("#uv").html("<b>UV Index: </b>" + response.name);
 
@@ -75,20 +74,20 @@ $.ajax({
     }).then(function (response) {
         console.log(response);
 
-        $("#dayOne").text(moment().day(0 + 1).format("ddd"));
+        $("#dayOne").text(moment().add(1, 'days').format("ddd"));
         $("#oneIcon").attr("src", "img/clouds.png")
-        $("#dayTwo").text(moment().day(0 + 2).format("ddd"));
+        $("#dayTwo").text(moment().add(2, 'days').format("ddd"));
         $("#twoIcon").attr("src", "img/clouds.png")
-        $("#dayThree").text(moment().day(0 + 3).format("ddd"));
+        $("#dayThree").text(moment().add(3, 'days').format("ddd"));
         $("#threeIcon").attr("src", "img/clouds.png")
-        $("#dayFour").text(moment().day(0 + 4).format("ddd"));
+        $("#dayFour").text(moment().add(4, 'days').format("ddd"));
         $("#fourIcon").attr("src", "img/clouds.png")
-        $("#dayFive").text(moment().day(0 + 5).format("ddd"));
+        $("#dayFive").text(moment().add(5, 'days').format("ddd"));
         $("#fiveIcon").attr("src", "img/clouds.png")
     });
 
 });
-
+/// ----------- ///
 
 
 //-----------------------------------------------------//
@@ -116,7 +115,7 @@ function renderButtons() {
     }
 }
 
-// Storing player's name and score in the local storage
+// Storing city's name and displaying current weather info
 $("#searchBtn").click(function currentWeather() {
     var userSearch = userInput.value.trim();
 
@@ -144,7 +143,7 @@ $("#searchBtn").click(function currentWeather() {
         $("#city").html(response.name);
         $("#temp").html(newTemp + "\u00B0");
         $("#date").text(moment().format("dddd, MMMM Do YYYY"));
-        $("#hum").html("<b>Humidity: </b>" + response.main.humidity) + "%";
+        $("#hum").html("<b>Humidity: </b>" + response.main.humidity + "%");
         $("#wind").html("<b>Wind Speed: </b>" + response.wind.speed + " Km/H");
         $("#uv").html("<b>UV Index: </b>" + response.name);
 
@@ -187,10 +186,34 @@ $("#searchBtn").click(function currentWeather() {
             $("#weatherIcon").empty();
         }
 
+        let lat = response.coord.lat;
+        console.log(lat);
+        let lon = response.coord.lon;
+        console.log(lon);
+        let UVQueryURL = "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + lat + "&lon=" + lon + "&appid=79f78d4405a86f3c387469b830755e28&cnt=0";
+        $.ajax({
+            url: UVQueryURL,
+            method: "GET",
+        }).then(function (response) {
+            console.log(response);
+            console.log(response[0].value)
+            $("#uv").html("<b>UV Index: </b>" + response[0].value);
+
+            if (response[0].value < 4 ) {
+                $("#uv").attr("class", "success");
+            }
+            else if (response[0].value  < 8) {
+                $("#uv").attr("class", "warning");
+            }
+            else {
+                $("#uv").attr("class", "danger");
+            }
+        })
+
         //Get 5-Day Forecast
         var forecastCity = response.name;
         var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + forecastCity + "&appid=79f78d4405a86f3c387469b830755e28"
-
+        
         $.ajax({
             url: forecastQueryURL,
             method: "GET",
