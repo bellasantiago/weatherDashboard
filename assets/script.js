@@ -50,7 +50,7 @@ $(function () {
   function currentWeather(city) {
     // OpenWeather API
     var userQueryURL =
-      "http://api.openweathermap.org/data/2.5/weather?q=" +
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
       city +
       "&units=metric&appid=79f78d4405a86f3c387469b830755e28";
 
@@ -83,7 +83,7 @@ $(function () {
       let lon = response.coord.lon;
       console.log(lon);
       let UVQueryURL =
-        "http://api.openweathermap.org/data/2.5/uvi/forecast?lat=" +
+        "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" +
         lat +
         "&lon=" +
         lon +
