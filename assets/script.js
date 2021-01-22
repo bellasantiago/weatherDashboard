@@ -118,10 +118,9 @@ $(function () {
       }).then(function (forecastResponse) {
         console.log(forecastResponse);
 
-         // Delete the content inside the searchHistoryContainer div prior to adding new city
-         $("#forecastCard").empty();
+        // Delete the content inside the searchHistoryContainer div prior to adding new city
+        $("#forecastCard").empty();
         for (var i = 0; i < 40; i++) {
-        
           var fiveDayForecast = forecastResponse.list[i];
           var dateStamp = fiveDayForecast.dt_txt;
           var dateStampString = JSON.stringify(dateStamp);
