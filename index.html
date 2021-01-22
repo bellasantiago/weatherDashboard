@@ -25,11 +25,15 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="bodyRow">
+        <div class="row" id="bodyRow">  
             <div class="col-4">
                 <div class="jumbotron" id="searchContainer">
                     <div class="container">
                         <div class="row" id="searchBarContainer">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="ClearAll">Clear History</button>
+                            </div>
+                            <div class="input-group-append"></div>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="City" aria-label="Search" aria-describedby="basic-addon2" id="userInput">
                                 <div class="input-group-append">
@@ -69,37 +73,24 @@
                     <div class="jumbotron" id="forecastContainer">
                         <div class="container-fluid">
                             <div class="card-body p-0">
-                                <div class="d-flex weakly-weather" id="forecastCard">
-                                    <!-- <div class="weakly-weather-item" id="p">
+                                <div class="d-flex weakly-weather" id="foreTitle">
+                                    <div class="weakly-weather-item dateCol">
                                         <p class="mb-0" id="dayOne"></p>
-                                        <img class="littleIcon" id="oneIcon" src="assets/img/wind.png">
-                                        <p class="mb-0" id="foreTempOne">Temp: 16°</p>
-                                        <p class="mb-0" id="foreHumOne">Humidity: 10%</p>
                                     </div>
-                                    <div class="weakly-weather-item" id="p">
+                                    <div class="weakly-weather-item dateCol">
                                         <p class="mb-0" id="dayTwo"></p>
-                                        <img class="littleIcon" id="oneIcon" src="assets/img/mist.png">
-                                        <p class="mb-0" id="foreTempOne">Temp: 20.37°</p>
-                                        <p class="mb-0" id="foreHumOne">Humidity: 90%</p>
                                     </div>
-                                    <div class="weakly-weather-item" id="p">
+                                    <div class="weakly-weather-item dateCol">
                                         <p class="mb-0" id="dayThree"></p>
-                                        <img class="littleIcon" id="oneIcon" src="assets/img/thunder.png">
-                                        <p class="mb-0" id="foreTempOne">Temp: 17°</p>
-                                        <p class="mb-0" id="foreHumOne">Humidity: 100%</p>
                                     </div>
-                                    <div class="weakly-weather-item" id="p">
+                                    <div class="weakly-weather-item dateCol">
                                         <p class="mb-0" id="dayFour"></p>
-                                        <img class="littleIcon" id="oneIcon" src="assets/img/clouds.png">
-                                        <p class="mb-0" id="foreTempOne">Temp: 23°</p>
-                                        <p class="mb-0" id="foreHumOne">Humidity: 20%</p>
                                     </div>
-                                    <div class="weakly-weather-item" id="p">
+                                    <div class="weakly-weather-item dateCol">
                                         <p class="mb-0" id="dayFive"></p>
-                                        <img class="littleIcon" id="oneIcon" src="assets/img/clear.png">
-                                        <p class="mb-0" id="foreTempOne">Temp: 19°</p>
-                                        <p class="mb-0" id="foreHumOne">Humidity: 5%</p>
-                                    </div> -->
+                                    </div>
+                                </div>
+                                <div class="d-flex weakly-weather" id="forecastCard">
                                 </div>
                             </div>
                         </div>

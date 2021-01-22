@@ -34,6 +34,7 @@ $(function() {
         searchHistory.push(userSearch);
         localStorage.setItem("history", JSON.stringify(searchHistory));
         renderButtons();
+        $("#foreCol").empty();
 
         //Searched City API Call
         currentWeather(userSearch);
@@ -41,7 +42,7 @@ $(function() {
 
     //Historical Searches button click
     $("#listBox").click(function() {
-        console.log($(this))
+        console.log($(this).text())
         console.log($("#listBox"))
             // currentWeather($(this).val());
     });
@@ -110,7 +111,6 @@ $(function() {
 
                 for (var i = 0; i < 40; i++) {
                     var fiveDayForecast = forecastResponse.list[i];
-
                     var dateStamp = fiveDayForecast.dt_txt;
                     var dateStampString = JSON.stringify(dateStamp);
                     var date = dateStampString.slice(1, 11);
@@ -120,22 +120,14 @@ $(function() {
                         console.log(forecastResponse.list[i])
                         var foreResults = forecastResponse.list[i]
                         var html =
-                            `<div class="weakly-weather-item" id="p">
-                        <p class="mb-0" id="dayOne"></p>
-                        <img class="littleIcon" id="oneIcon" src="assets/img/wind.png">
+                            `<div class="weakly-weather-item col" id="foreCol">
+                        <img class="littleIcon" id="oneIcon" src="assets/img/${foreResults.weather[0].main}.png">
                         <p class="mb-0" id="foreTempOne">Temp: ${foreResults.main.temp}°</p>
-                        <p class="mb-0" id="foreHumOne">Humidity: 10%</p>
+                        <p class="mb-0" id="foreHumOne">Humidity: ${foreResults.main.humidity}%</p>
                     </div>`
-                        $("#forecastCard").append(html)
+                        $("#forecastCard").append(html);
                     }
                 }
-                // <div class="weakly-weather-item" id="p">
-                //                         <p class="mb-0" id="dayOne"></p>
-                //                         <img class="littleIcon" id="oneIcon" src="assets/img/wind.png">
-                //                         <p class="mb-0" id="foreTempOne">Temp: 16°</p>
-                //                         <p class="mb-0" id="foreHumOne">Humidity: 10%</p>
-                //                     </div>
-
             });
 
             // Render date on forecast
@@ -147,4 +139,8 @@ $(function() {
 
         });
     };
+    $("#ClearAll").click(function() {
+        var newHis = localStorage.clear(searchHistory);
+        $("#listBox").empty();
+    })
 });
