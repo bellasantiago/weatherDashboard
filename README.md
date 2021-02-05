@@ -8,6 +8,15 @@ The user is able to clear the past searches as well.<br>
 ## For Future Development
 The integration of the prious searches being called when the item is clicked in the historical panel.<br>
 
+## Technologies Used
+HTML5<br>
+CSS<br>
+JavaScript
+OpenWeather API
+
+## License
+MIT
+
 ## Deployed application
 https://bellasantiago.github.io/weatherDashboard
 
@@ -16,3 +25,6 @@ https://github.com/bellasantiago/weatherDashboard
 
 ## Finished Screenshots
 ![Screenshot1](./assets/img/screeshot.png)
+
+## Contact the Creator
+bellasantiado.adl@gmail.com
