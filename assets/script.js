@@ -74,7 +74,7 @@ $(function() {
             $("#weatherIcon").empty();
             var iconResponse = response.weather[0].main;
             var icon = $("<img>");
-            icon.attr("src", "./assets/img/" + iconResponse + ".png");
+            icon.attr("src", "../assets/img/" + iconResponse + ".png");
             $("#weatherIcon").append(icon);
 
             //UV Index Call
@@ -131,7 +131,7 @@ $(function() {
                         console.log(forecastResponse.list[i]);
                         var foreResults = forecastResponse.list[i];
                         var html = `<div class="weakly-weather-item col" id="foreCol">
-                        <img class="littleIcon" id="oneIcon" src="./assets/img/${foreResults.weather[0].main}.png">
+                        <img class="littleIcon" id="oneIcon" src="../assets/img/${foreResults.weather[0].main}.png">
                         <p class="mb-0" id="foreTempOne">Temp: ${foreResults.main.temp}°</p>
                         <p class="mb-0" id="foreHumOne">Humidity: ${foreResults.main.humidity}%</p>
                     </div>`;
